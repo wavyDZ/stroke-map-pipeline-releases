@@ -22,6 +22,23 @@ artwork over, then applies that artwork back onto the surface and exports a
 The panel appears in the 3D viewport sidebar (press **N**) under a
 **Stroke Maps** tab.
 
+### macOS: Safari unzips it for you, which breaks the install
+
+Safari expands archives automatically, so clicking the download link leaves
+you with an unzipped *folder* — and Blender needs the `.zip` itself. Install
+from Disk won't accept the folder.
+
+Either:
+
+- **right-click the link → Download Linked File**, which skips the expansion, or
+- turn the behaviour off once: **Safari → Settings → General →** untick
+  **"Open 'safe' files after downloading"**
+
+Chrome and Firefox don't do this, so a plain click works there.
+
+If you already have an unzipped folder, don't try to re-zip it — macOS adds
+metadata files that can confuse the installer. Download it again instead.
+
 ---
 
 ## The pipeline

@@ -34,6 +34,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import urllib.request
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 REPO = "wavyDZ/stroke-map-pipeline-releases"
@@ -62,14 +63,52 @@ def find_blender():
 
 
 def release_url(zip_path, version):
-    """Where the asset actually lives, once the release is published.
+    """Where the asset actually lives -- ASKED, not assumed.
 
-    Built from the tag and the file's OWN name rather than a tidy name we
-    wish it had: the asset keeps whatever filename was uploaded, and an
-    archive_url that does not match it 404s at install time.
+    This used to construct the URL as
+    `.../releases/download/v{version}/{basename}`, which bakes in two guesses:
+    that the tag is exactly "v" plus the version, and that the asset kept the
+    filename we built it with. Both are things a human types into a web form
+    at 4am.
+
+    THE FIRST GUESS FAILED ON ITS FIRST REAL USE. v3.30.0 was published under
+    the tag `v.3.30.0` -- one extra dot -- so the constructed URL returned 404
+    while the real one returned 200. An index built from it would have
+    advertised a dead link to every user; the mistake was invisible from the
+    machine that made it, where the add-on is installed from source.
+
+    So the URL now comes from the GitHub API: find the release whose asset
+    matches this file by NAME AND SIZE, and take the `browser_download_url`
+    GitHub itself reports. Whatever the tag is spelled like, that URL is
+    right by construction. It also fails immediately and with a clear reason
+    when the release has not been published yet, instead of producing an
+    index that only breaks later on somebody else's machine.
     """
-    return (f"https://github.com/{REPO}/releases/download/"
-            f"v{version}/{os.path.basename(zip_path)}")
+    name = os.path.basename(zip_path)
+    size = os.path.getsize(zip_path)
+    api = f"https://api.github.com/repos/{REPO}/releases"
+    try:
+        with urllib.request.urlopen(api) as r:
+            releases = json.load(r)
+    except Exception as e:
+        sys.exit(f"could not reach the GitHub API to locate the release: {e}")
+
+    for rel in releases:
+        for asset in rel.get("assets", []):
+            if asset["name"] == name:
+                if asset["size"] != size:
+                    sys.exit(
+                        f"'{name}' is published under tag {rel['tag_name']} "
+                        f"but is {asset['size']} bytes there against "
+                        f"{size} locally -- a different build was uploaded")
+                print(f"  found under tag {rel['tag_name']}")
+                return asset["browser_download_url"]
+
+    tags = ", ".join(r["tag_name"] for r in releases) or "(none)"
+    sys.exit(f"no published release has an asset named '{name}'.\n"
+             f"Existing tags: {tags}\n"
+             f"Publish the release and attach this zip first -- see "
+             f"RELEASING.md, the index must be built after the release.")
 
 
 def main():

@@ -1,0 +1,46 @@
+{
+  "$comment": [
+    "Shared project settings, TRACKED so every machine gets them.",
+    "",
+    "This is the PUBLIC distribution repo: README and licence only. Builds",
+    "are published as release assets and never committed here, and the",
+    "add-on source lives in the private repo -- so the build and install",
+    "scripts allowed there are deliberately absent, because neither exists",
+    "in this checkout.",
+    "",
+    "These entries remove the permission PROMPT. They do not make Claude",
+    "push on its own -- it still acts when asked. Force pushes, hard resets",
+    "and history rewrites are denied rather than merely absent: this repo is",
+    "public, so a rewritten history is visible to anyone who already cloned",
+    "it and cannot be quietly undone."
+  ],
+  "permissions": {
+    "allow": [
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git branch:*)",
+      "Bash(git remote:*)",
+      "Bash(git ls-files:*)",
+      "Bash(git check-ignore:*)",
+      "Bash(git fetch:*)",
+      "Bash(git pull:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git stash:*)",
+      "Bash(git tag:*)"
+    ],
+    "deny": [
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean -fd:*)",
+      "Bash(git filter-branch:*)",
+      "Bash(git rebase -i:*)",
+      "Bash(git tag -d:*)",
+      "Bash(git push --delete:*)"
+    ]
+  }
+}

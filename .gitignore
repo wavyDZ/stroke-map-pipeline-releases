@@ -1,0 +1,6 @@
+# OS junk. Finder writes .DS_Store into every folder it opens.
+.DS_Store
+**/.DS_Store
+._*
+Thumbs.db
+desktop.ini

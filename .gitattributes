@@ -1,0 +1,8 @@
+# Line endings pinned so Windows and macOS produce identical bytes.
+* text=auto eol=lf
+
+# Release assets and images are binary: a line-ending rule applied to a zip
+# would corrupt it.
+*.zip binary
+*.png binary
+*.jpg binary

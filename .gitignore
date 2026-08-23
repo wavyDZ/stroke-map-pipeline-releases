@@ -4,3 +4,10 @@
 ._*
 Thumbs.db
 desktop.ini
+
+# Python bytecode. The interpreter version is in the FILENAME, so a machine
+# on a different Python writes a new file rather than updating this one --
+# they accumulate instead of churning. make_index.cpython-313.pyc was swept
+# into 78be9a4 by an add; the private repo has ignored these from the start.
+__pycache__/
+*.pyc

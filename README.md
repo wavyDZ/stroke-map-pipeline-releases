@@ -14,15 +14,40 @@ artwork over, then applies that artwork back onto the surface and exports a
 
 ## Install
 
+### Recommended: add the extension repository
+
+Set this up once and Blender handles the rest, including updates.
+
+1. **Edit → Preferences → System →** make sure **Allow Online Access** is on
+2. Go to **Get Extensions**
+3. Click the **⌄** dropdown at the top right → **Repositories…**
+4. Press **+ → Add Remote Repository**
+5. Paste this URL:
+
+   ```
+   https://wavydz.github.io/stroke-map-pipeline-releases/index.json
+   ```
+
+6. Confirm, then find **Stroke Map Pipeline (AO)** in the extensions list and
+   click **Install**
+
+New versions then show up as updates inside Blender — you don't have to come
+back here to find out one exists.
+
+**Allow Online Access is off by default in Blender**, and with it off the
+repository simply fails to refresh. If nothing appears after adding the URL,
+that's the first thing to check.
+
+### Alternative: install the zip by hand
+
 1. Download the `.zip` from the [Releases](../../releases) page — don't unzip it
 2. In Blender: **Edit → Preferences → Get Extensions**
 3. Click the **⌄** dropdown at the top right → **Install from Disk…**
 4. Pick the zip
 
-The panel appears in the 3D viewport sidebar (press **N**) under a
-**Stroke Maps** tab.
+You'll need to repeat this for each new version.
 
-### macOS: Safari unzips it for you, which breaks the install
+#### macOS: Safari unzips it for you, which breaks this route
 
 Safari expands archives automatically, so clicking the download link leaves
 you with an unzipped *folder* — and Blender needs the `.zip` itself. Install
@@ -38,6 +63,14 @@ Chrome and Firefox don't do this, so a plain click works there.
 
 If you already have an unzipped folder, don't try to re-zip it — macOS adds
 metadata files that can confuse the installer. Download it again instead.
+
+The repository route above avoids all of this, since Blender does the
+downloading itself.
+
+---
+
+However you install, the panel appears in the 3D viewport sidebar (press
+**N**) under a **Stroke Maps** tab.
 
 ---
 

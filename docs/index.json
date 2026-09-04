@@ -7,7 +7,7 @@
       "id": "stroke_map_pipeline_ao",
       "name": "Stroke Map Pipeline (AO)",
       "tagline": "UV prep, AO stroke masks, SVG centrelines, 3MF colour export",
-      "version": "3.33.2",
+      "version": "3.33.3",
       "type": "add-on",
       "maintainer": "Stroke Map Pipeline",
       "license": [
@@ -19,9 +19,9 @@
         "Mesh",
         "Render"
       ],
-      "archive_url": "https://github.com/wavyDZ/stroke-map-pipeline-releases/releases/download/v3.33.2/stroke_map_pipeline_ao_v3.33.2_20260904-0032.zip",
-      "archive_size": 155455,
-      "archive_hash": "sha256:e8977b014f30a2c7202006e50ce7c629952cbae2af7b1f658e94f53f416258d0"
+      "archive_url": "https://github.com/wavyDZ/stroke-map-pipeline-releases/releases/download/v3.33.3/stroke_map_pipeline_ao_v3.33.3_20260904-1135.zip",
+      "archive_size": 156932,
+      "archive_hash": "sha256:2b45c2187712b4e8d8c72344b907f526b594deabad4d5f00620481ec187e3637"
     }
   ]
 }
